@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street_address: MyString
+  city: MyString
+  zip_code: 1
+  open_date: 2015-02-08
+
+two:
+  street_address: MyString
+  city: MyString
+  zip_code: 1
+  open_date: 2015-02-08

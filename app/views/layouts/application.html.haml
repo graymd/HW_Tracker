@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title HwTrackerProject
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      - if notice
+        .alert.alert-success{ role: "alert"}
+          = notice
+      - if alert
+        .alert.alert-danger{ role: "alert"}
+          = alert
+      = yield

@@ -1,0 +1,15 @@
+.text-center
+  .list-group-item
+    = form_for @location do |form|
+      .form-group
+        = form.label :street_address
+        = form.text_field :street_address, class: "form-control"
+      .form-group
+        = form.label :city
+        = form.text_field :city, class: "form-control"
+      .form-group
+        = form.label :state
+        = form.text_field :state, class: "form-control"
+      .form-group
+        =form.label :open_date
+        =form.date_field :open_date, class: "form-control"
