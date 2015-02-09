@@ -7,10 +7,20 @@
     = csrf_meta_tags
   %body
     .container
+      - if current_user
+        =link_to "Logout #{current_user.email}", destroy_user_session_path, method: :delete
+        |
+        = link_to "Edit #{current_user.email}", edit_user_registration_path(current_user)
+      -else
+        = link_to "Login", new_user_session_path
+        |
+        = link_to "Register account", new_user_registration_path
       - if notice
         .alert.alert-success{ role: "alert"}
           = notice
       - if alert
         .alert.alert-danger{ role: "alert"}
           = alert
+      %br
+      %br
       = yield

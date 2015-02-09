@@ -1,15 +1,19 @@
 .text-center
   .list-group-item
-    = form_for @location do |form|
+    = form_for @location do |f|
       .form-group
-        = form.label :street_address
-        = form.text_field :street_address, class: "form-control"
+        = f.label :street_address
+        = f.text_field :street_address, class: "form-control"
       .form-group
-        = form.label :city
-        = form.text_field :city, class: "form-control"
+        = f.label :city
+        = f.text_field :city, class: "form-control"
       .form-group
-        = form.label :state
-        = form.text_field :state, class: "form-control"
+        = f.label :state
+        = f.text_field :state, class: "form-control"
       .form-group
-        =form.label :open_date
-        =form.date_field :open_date, class: "form-control"
+        = f.label :zip_code
+        = f.text_field :zip_code, class: "form-control"
+      .form-group
+        =f.label :open_date
+        =f.date_field :open_date, class: "form-control"
+      = f.submit "Submit", class: "btn btn-primary"

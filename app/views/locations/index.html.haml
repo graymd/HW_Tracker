@@ -1,7 +1,16 @@
-= link_to "Add a New Location", new_location_path
-%br
-Please select a location:
+.text-center
+  = link_to "Add a New Location", new_location_path
+  %br
+  = link_to "Return to root", root_path
+  %br
+  Please select a location:
+  %br
+  %br
 
-%br
-%br
-%br
+  - @locations.each do |location|
+    .col-md-3
+      = link_to location.city, location_path(location)
+
+  %br
+  %br
+  %br

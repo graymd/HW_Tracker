@@ -1,8 +1,8 @@
 class Location < ActiveRecord::Base
-  def index
-  end
+  validates :street_address, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zip_code, presence: true
+  validates :open_date, presence: true
 
-  def new
-    @location = Location.new
-  end
 end

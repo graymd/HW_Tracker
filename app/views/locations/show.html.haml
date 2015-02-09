@@ -1,0 +1,19 @@
+.text-center
+  = link_to "Return to Locations", locations_path
+  %br
+  = @location.city
+  %br
+  %br
+  Address:
+  %br
+  = @location.street_address
+  %br
+  = @location.city + ', ' + @location.state
+  %br
+  Date location opened:
+  = @location.open_date
+  %br
+  %br
+  = link_to "Edit location", edit_location_path(@location)
+  |
+  = link_to "Delete location", location_path(@location), method: :delete
