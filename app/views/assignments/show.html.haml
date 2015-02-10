@@ -5,12 +5,22 @@
   .group-list-item
   %h3
     = @assignment.name
+  = link_to "edit", edit_assignment_path(@assignment)
+  |
+  = link_to "delete", assignment_path(@assignment), method: :delete
+  %br
   %br
   %strong Requirements:
   %br
   = @assignment.requirements
   %br
   %br
-  = link_to "edit", edit_assignment_path(@assignment)
-  |
-  = link_to "delete", assignment_path(@assignment), method: :delete
+  Submissions:
+  %br
+  - @submissions.each do |submission|
+    = link_to submission.name, assignment_submission_path(@assignment, submission)
+    %br
+  %br
+  = link_to "Create HW Submission", new_assignment_submission_path(@assignment)
+  %br
+  

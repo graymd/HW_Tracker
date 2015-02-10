@@ -6,10 +6,12 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
+    @assignment.user = current_user
   end
 
   def create
     @assignment = Assignment.create assignment_params
+    @assignment.user = current_user
     if @assignment.save
       flash[:notice] = "#{@assignment.name} assignment successfully saved."
       redirect_to assignments_path
@@ -21,16 +23,18 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Assignment.find params[:id]
-
+    @submissions = @assignment.submissions
   end
 
   def edit
     @assignment = Assignment.find params[:id]
+    @assignment.user = current_user
   end
 
   def update
     @assignment = Assignment.find params[:id]
-    if @assignment.update assignment_params
+    @assignment.user = current_user
+    if @assignment.update_attributes assignment_params
       flash[:notice] = "#{@assignment.name} assignment was successfully updated."
       redirect_to assignment_path(@assignment)
     else
@@ -51,7 +55,8 @@ private
   def assignment_params
     params.require(:assignment).permit(
       :name,
-      :requirements)
+      :requirements,
+      :user_id)
   end
 
 

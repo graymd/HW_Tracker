@@ -1,5 +1,5 @@
 .list-group-item
-  = form_for @assignment do |f|
+  = form_for [@assignment] do |f|
     = f.label :name
     = f.text_field :name, class: "form-control"
     = f.label :requirements

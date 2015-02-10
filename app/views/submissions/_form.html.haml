@@ -1,0 +1,10 @@
+.list-group-item
+  = form_for [@assignment, @submission] do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :input
+      = f.text_area :input, class: "form-control"
+    .form-group
+      = f.submit "Submit", class: "btn btn-primary"

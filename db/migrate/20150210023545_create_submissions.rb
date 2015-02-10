@@ -3,6 +3,7 @@ class CreateSubmissions < ActiveRecord::Migration
     create_table :submissions do |t|
       t.string :workflow_state
       t.string :name
+      t.text :input
       t.integer :assignment_id
       t.integer :user_id
 
