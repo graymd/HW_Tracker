@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         post :create_comment
         delete :destroy_comment
       end
+      resources :links
     end
   end
 

@@ -1,0 +1,12 @@
+.col-md-6.col-md-offset-3.text-center
+  = link_to "Return to #{@submission.name}", assignment_submission_path(@assignment, @submission)
+  %br
+  %br
+  .group-list-item
+    %h3 Link
+    = @link.url
+    %br
+    %br
+    = link_to "Edit link", edit_assignment_submission_link_path(@assignment, @submission, @link)
+    |
+    = link_to "Delete link", assignment_submission_link_path(@assignment, @submission, @link), method: :delete

@@ -30,6 +30,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find params[:id]
     @comment = Comment.new
     @comments = @submission.comments
+    @links = @submission.links
   end
 
   def edit

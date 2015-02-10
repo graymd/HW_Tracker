@@ -15,6 +15,14 @@
   = @submission.input
   %br
   %br
+  %strong Links:
+  %br
+  = link_to "Add Link", new_assignment_submission_link_path(@assignment, @submission)
+  %ul
+    - @links.each do |link|
+      %li
+      = link_to link.url, assignment_submission_link_path(@assignment, @submission, link)
+  %br
   Comments:
   %br
   %ul
