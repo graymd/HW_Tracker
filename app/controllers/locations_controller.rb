@@ -6,13 +6,15 @@ class LocationsController < ApplicationController
   end
 
   def new
+    @courses = Course.all
     @location = Location.new
   end
 
   def create
+    @courses = Course.all
     @location = Location.create location_params
     if @location.save
-      flash[:notice] = "Location successfully saved."
+      flash[:notice] = "#{@location.city} successfully saved."
       redirect_to locations_path
     else 
       flash[:alert] = "Location NOT successfully saved."
@@ -22,19 +24,22 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find params[:id]
+    @courses = @location.courses.all
   end
 
   def edit
     @location = Location.find params[:id]
+    @courses = Course.all
   end
 
   def update
+    @courses = Course.all
     @location = Location.find params[:id]
     if @location.update location_params
-      flash[:notice] = "Location was successfully updated."
+      flash[:notice] = "#{@location.city} was successfully updated."
       redirect_to location_path(@location)
     else
-      flash[:alert] = "Location was NOT successfully updated."
+      flash[:alert] = "#{@location.city} was NOT successfully updated."
       render :edit
     end
   end
@@ -57,7 +62,8 @@ private
       :city,
       :state,
       :zip_code,
-      :open_date
+      :open_date,
+      course_ids: []
     )
   end
 end

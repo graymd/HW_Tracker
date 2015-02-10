@@ -1,19 +1,31 @@
 .text-center
   = link_to "Return to Locations", locations_path
   %br
-  = @location.city
-  %br
-  %br
-  Address:
-  %br
-  = @location.street_address
-  %br
-  = @location.city + ', ' + @location.state
-  %br
-  Date location opened:
-  = @location.open_date
-  %br
-  %br
-  = link_to "Edit location", edit_location_path(@location)
-  |
-  = link_to "Delete location", location_path(@location), method: :delete
+  .col-md-4.col-md-offset-4.text-center
+    .list-group-item.h3
+      = @location.city
+    %br
+    .row
+      .list-group-item  
+        Address:
+        %br
+        = @location.street_address
+        %br
+        = @location.city + ', ' + @location.state
+    %br
+    .row
+      .list-group-item
+        Date location opened:
+        = @location.open_date
+    %br
+    .row
+      .list-group-item
+        Courses offered:
+        %br
+        - @courses.each do |course|
+          = link_to course.name, course_path(course)
+
+    %br
+    = link_to "Edit location", edit_location_path(@location)
+    |
+    = link_to "Delete location", location_path(@location), method: :delete

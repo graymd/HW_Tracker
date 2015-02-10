@@ -62,31 +62,9 @@ gems required:
 -https://github.com/ryanb/cancan
 -https://github.com/ryanb/nested_form
 -https://coderwall.com/p/qwx3qa
-
 -devise
-https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-role
-if current_user.admin?
-  # do something
-end
-If the page could potentially not have a current_user set then:
+haml-rails
 
-if current_user.try(:admin?)
-  # do something
-end
-The code below can be used to grant admin status to the current user.
-
-current_user.update_attribute :admin, true
-
-https://github.com/ryanb/cancan/wiki/Role-Based-Authorization
-
-If you have some checkboxes that express the roles a user may take on registration, the browser will send those selected checkboxes as an array. An array is not one of Strong Parameters' permitted scalars, so we need to configure Devise in the following way:
-
-def configure_permitted_parameters
-  devise_parameter_sanitizer.for(:sign_up) { |u| u.permit({ roles: [] }, :email, :password, :password_confirmation) }
-end
-For the list of permitted scalars, and how to declare permitted keys in nested hashes and arrays, see
-
-https://github.com/rails/strong_parameters#nested-parameters
 
 
 

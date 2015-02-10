@@ -16,4 +16,11 @@
       .form-group
         =f.label :open_date
         =f.date_field :open_date, class: "form-control"
+      .form-group
+      = "Select courses offered at location:"
+      %br
+      - @courses.each do |course|
+        = check_box_tag 'location[course_ids][]', course.id, @location.courses.include?(course)
+        = course.name
+        %br
       = f.submit "Submit", class: "btn btn-primary"
