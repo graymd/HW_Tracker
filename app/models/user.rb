@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :assignments, through: :submissions
   has_many :submissions
+  has_many :location_courses, through: :location_course_users
+  has_many :location_course_users
+  has_many :comments
 end

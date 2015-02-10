@@ -28,6 +28,8 @@ class SubmissionsController < ApplicationController
   def show
     @assignment = Assignment.find params[:assignment_id]
     @submission = Submission.find params[:id]
+    @comment = Comment.new
+    @comments = @submission.comments
   end
 
   def edit
@@ -57,12 +59,34 @@ class SubmissionsController < ApplicationController
     redirect_to assignment_path(@assignment)
   end
 
+  def create_comment
+    @assignment = Assignment.find params[:assignment_id]
+    @submission = @assignment.submissions.find params[:id]
+    @comment = @submission.comments.create comment_params
+    @comment.user = current_user
+    @comment.save
+    redirect_to assignment_submission_path(@assignment, @submission)
+  end
+
+  def destroy_comment
+    @comment = Comment.find params[:id]
+    @comment.destroy
+    redirect_to assignment_submission_path(@comment.commentable.assignment, @comment.commentable)
+  end
+
+
 private
   def submission_params
     params.require(:submission).permit(
       :name,
       :input,
       :assignment_id,
+      :user_id)
+  end
+
+  def comment_params
+    params.require(:comment).permit(
+      :content,
       :user_id)
   end
 

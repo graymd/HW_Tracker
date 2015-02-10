@@ -15,4 +15,21 @@
   = @submission.input
   %br
   %br
+  Comments:
   %br
+  %ul
+    - @comments.each do |comment|
+      %li
+      = comment.content
+      |
+      = comment.user.email
+      |
+      = link_to "Delete_comment", destroy_comment_assignment_submission_path(@submission, comment), method: :delete
+  %br
+  Add Comment:
+  = form_for @comment, url: create_comment_assignment_submission_path(@assignment, @submission) do |f|
+    .form-group
+      = f.label :content
+      = f.text_area :content, class: "form-control"
+      %br
+      = f.submit "Submit comment", class: "btn btn-primary"

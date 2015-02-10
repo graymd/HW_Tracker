@@ -23,4 +23,27 @@
   %br
   = link_to "Create HW Submission", new_assignment_submission_path(@assignment)
   %br
+  %br
+  Comments:
+  %br
+  %ul
+    - @comments.each do |comment|
+      %li
+        = comment.content
+        |
+        = comment.user.email
+        |
+        = link_to "Delete comment", destroy_comment_assignment_path(comment), method: :delete
+    %br
+  %br
+  %br
+  Add Comments:
+  = form_for @comment, url: create_comment_assignment_path(@assignment) do |f|
+    .form-group
+      = f.label :content
+      = f.text_area :content, class: "form-control"
+      %br
+    = f.submit "Submit Comment", class: "btn btn-primary"
+
+
   

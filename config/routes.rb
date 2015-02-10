@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   resources :locations
   resources :courses
   resources :assignments do
-    resources :submissions
+    member do
+      post :create_comment
+      delete :destroy_comment
+    end
+    resources :submissions do
+      member do
+        post :create_comment
+        delete :destroy_comment
+      end
+    end
   end
 
 
