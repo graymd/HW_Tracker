@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :locations
   resources :courses
+  resources :assignments do
+    resources :submissions
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

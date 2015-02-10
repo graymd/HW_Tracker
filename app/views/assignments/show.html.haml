@@ -1,0 +1,16 @@
+.col-md-6.col-md-offset-3.text-center
+  = link_to "Return to assignments", assignments_path
+  %br
+  %br
+  .group-list-item
+  %h3
+    = @assignment.name
+  %br
+  %strong Requirements:
+  %br
+  = @assignment.requirements
+  %br
+  %br
+  = link_to "edit", edit_assignment_path(@assignment)
+  |
+  = link_to "delete", assignment_path(@assignment), method: :delete

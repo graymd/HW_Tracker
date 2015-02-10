@@ -33,7 +33,6 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @courses = Course.all
     @location = Location.find params[:id]
     if @location.update location_params
       flash[:notice] = "#{@location.city} was successfully updated."

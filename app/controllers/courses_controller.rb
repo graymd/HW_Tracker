@@ -28,6 +28,7 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find params[:id]
+    @locations = Location.all
   end
 
   def update

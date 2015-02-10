@@ -22,8 +22,10 @@
       .list-group-item
         Courses offered:
         %br
-        - @courses.each do |course|
-          = link_to course.name, course_path(course)
+        %ul.text-left
+          - @courses.each do |course|
+            %li
+              = link_to course.name, course_path(course)
 
     %br
     = link_to "Edit location", edit_location_path(@location)
