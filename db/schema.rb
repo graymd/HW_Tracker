@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210203203) do
+ActiveRecord::Schema.define(version: 20150211004408) do
 
   create_table "assignments", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -93,6 +93,9 @@ ActiveRecord::Schema.define(version: 20150210203203) do
     t.datetime "updated_at"
     t.boolean  "admin",                  limit: 1,   default: false
     t.string   "role",                   limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "github_account",         limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
