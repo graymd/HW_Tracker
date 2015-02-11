@@ -1,0 +1,9 @@
+= link_to "Return to root", root_path
+%h2 Index of Users:
+%br
+%br
+%ul
+  - @users.each do |user|
+    %li
+      = link_to user.last_name + ", " + user.first_name, user_path(user)
+  %br
