@@ -10,6 +10,24 @@
   = link_to "Delete HW Submission", assignment_submission_path(@assignment, @submission), method: :delete
   %br
   %br
+  Current State:
+  %br
+  =workflow_state_helper(@submission)
+  %br
+  %br
+  - if @submission.workflow_state != "completed"
+    Change State:
+  %br
+  - if @submission.workflow_state == "new"
+    = link_to "Review", review_submission_assignment_submission_path(@assignment, @submission), method: :patch
+  -elsif @submission.workflow_state == "reviewing"
+    = link_to "Complete", complete_submission_assignment_submission_path(@assignment, @submission), method: :patch
+    |
+    = link_to "Incomplete", incomplete_submission_assignment_submission_path(@assignment, @submission), method: :patch
+  -elsif @submission.workflow_state == "incompleted"
+    = link_to "Review", review_submission_assignment_submission_path(@assignment, @submission), method: :patch
+  %br
+  %br
   %strong Inputs:
   %br
   = @submission.input

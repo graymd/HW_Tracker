@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       member do
         post :create_comment
         delete :destroy_comment
+        patch :new_submission
+        patch :review_submission
+        patch :complete_submission
+        patch :incomplete_submission
       end
       resources :links
     end

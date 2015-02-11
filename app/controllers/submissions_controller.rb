@@ -75,6 +75,35 @@ class SubmissionsController < ApplicationController
     redirect_to assignment_submission_path(@comment.commentable.assignment, @comment.commentable)
   end
 
+  def new_submission
+    @assignment = Assignment.find params[:assignment_id]
+    @submission = @assignment.submissions.find params[:id]
+    @submission.new!
+    redirect_to assignment_submission_path(@assignment, @submission)
+  end
+
+  def review_submission
+    @assignment = Assignment.find params[:assignment_id]
+    @submission = @assignment.submissions.find params[:id]
+    @submission.review!
+    redirect_to assignment_submission_path(@assignment, @submission)
+  end
+
+  def complete_submission
+    @assignment = Assignment.find params[:assignment_id]
+    @submission = @assignment.submissions.find params[:id]
+    @submission.complete!
+    redirect_to assignment_submission_path(@assignment, @submission)
+  end
+
+  def incomplete_submission
+    @assignment = Assignment.find params[:assignment_id]
+    @submission = @assignment.submissions.find params[:id]
+    @submission.incomplete!
+    redirect_to assignment_submission_path(@assignment, @submission)
+  end
+
+
 
 private
   def submission_params
