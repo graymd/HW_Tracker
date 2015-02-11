@@ -38,6 +38,9 @@ gem 'jquery-turbolinks'
 #gem for removing CMD assets other than for errors
 gem 'quiet_assets'
 
+#gem for using workflow states
+gem 'workflow'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

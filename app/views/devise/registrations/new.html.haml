@@ -34,5 +34,25 @@
     <haml_loud> f.password_field :password_confirmation, autocomplete: "off" </haml_loud>
     </div>
   .actions
+  %br
+  %br
+  Select a Location:
+  %br
+  %ul
+    - Location.all.each do |location|
+      %li
+        = location.city
+        %br
+        Select desired courses offered:
+        %br
+        - location.location_courses.each do |location_course|
+          = check_box_tag 'user[location_course_ids][]', location_course.id
+          = location_course.course.name
+        %br
+        %br
+
+
+  %br
+  %br
     = f.submit "Sign up"
 = render "devise/shared/links"
