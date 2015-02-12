@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @assignments = Assignment.all
@@ -56,6 +57,14 @@ class AssignmentsController < ApplicationController
   def create_comment
     @assignment = Assignment.find params[:id]
     @comment = @assignment.comments.create comment_params
+    @comment.user = current_user
+    @comment.save
+    redirect_to assignment_path(@assignment)
+  end
+
+  def edit_comment
+    @assignment = Assignment.find params[:id]
+    @comment = @assignment.comments.update comment_params
     @comment.user = current_user
     @comment.save
     redirect_to assignment_path(@assignment)

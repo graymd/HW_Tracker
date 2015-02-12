@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit({ location_course_ids: [] }, :username, :email, :first_name, :last_name, :github_account, :password) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit({ location_course_ids: [] }, :username, :email, :first_name, :last_name, :github_account, :password, :current_password) }
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = "Access denied.  You do not have the required access rights."
+    redirect_to root_path
+  end
 end

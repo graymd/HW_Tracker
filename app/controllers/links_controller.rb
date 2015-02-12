@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  load_and_authorize_resource #need to figure out appropriate nesting caps
 
   def index
 

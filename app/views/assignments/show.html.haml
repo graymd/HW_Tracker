@@ -35,6 +35,8 @@
         |
         = comment.user.email
         |
+        = link_to "Edit Comment", edit_comment_assignment_path(comment)
+        |
         = link_to "Delete comment", destroy_comment_assignment_path(comment), method: :delete
     %br
   %br

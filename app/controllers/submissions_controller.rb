@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @assignment = Assignment.find params[:assignment_id]
