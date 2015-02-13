@@ -1,7 +1,10 @@
-.col-md-6.col-md-offset-3.text-center
-  %h1 Edit User
+.jumbotron
+  %h1 USERS
+  %p.lead
+    = @user.first_name
+    = @user.last_name
+.text-center
   %br
   = link_to "Cancel", user_path(@user)
-  %br
   %br
   = render 'form'

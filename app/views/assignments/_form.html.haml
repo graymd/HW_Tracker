@@ -1,8 +1,11 @@
-.list-group-item
-  = form_for [@assignment] do |f|
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-    = f.label :requirements
-    = f.text_area :requirements, class: "form-control"
-    %br
-    = f.submit "Submit", class: "btn btn-primary"
+.col-md-6.col-md-offset-3
+  .list-group-item
+    = form_for [@assignment] do |f|
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+      .form-group
+        = f.label :requirements
+        = f.text_area :requirements, class: "form-control"
+      .form-group
+      = f.submit "Submit", class: "btn btn-primary"

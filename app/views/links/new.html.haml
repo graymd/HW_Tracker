@@ -1,8 +1,7 @@
-.col-md-6.col-md-offset-3.text-center
-  %h3 Create a new link
+.jumbotron
+  %h1 Links
+  %p.lead Create a new link
   = link_to "cancel", assignment_submission_path(@assignment, @submission)
-  %br
-  %br
   %br
   .row
   = render 'form'

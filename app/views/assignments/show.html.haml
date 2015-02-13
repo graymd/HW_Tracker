@@ -1,51 +1,54 @@
-.col-md-6.col-md-offset-3.text-center
+.jumbotron
+  %h1 Assignments
+  %p.lead 
+    =@assignment.name
   = link_to "Return to assignments", assignments_path
   %br
-  %br
-  .group-list-item
-  %h3
-    = @assignment.name
-  = link_to "edit", edit_assignment_path(@assignment)
-  |
-  = link_to "delete", assignment_path(@assignment), method: :delete
-  %br
-  %br
-  %strong Requirements:
-  %br
-  = @assignment.requirements
-  %br
-  %br
-  %strong Submissions:
-  %br
-  - @submissions.each do |submission|
-    = link_to submission.name, assignment_submission_path(@assignment, submission)
-    |
-    = submission.user.last_name + ', ' + submission.user.first_name
-    %br
-  %br
-  = link_to "Create HW Submission", new_assignment_submission_path(@assignment)
-  %br
-  %br
-  Comments:
-  %br
-  %ul
-    - @comments.each do |comment|
-      %li
-        = comment.content
+  .col-md-6.col-md-offset-3.text-center
+    .row
+      .list-group-item
+        %strong Requirements:
+        %br
+        = @assignment.requirements
+        %br
+        = link_to "edit", edit_assignment_path(@assignment)
         |
-        = comment.user.email
-        |
-        = link_to "Delete comment", destroy_comment_assignment_path(comment), method: :delete
+        = link_to "delete", assignment_path(@assignment), method: :delete
     %br
-  %br
-  %br
-  Add Comments:
-  = form_for @comment, url: create_comment_assignment_path(@assignment) do |f|
-    .form-group
-      = f.label :content
-      = f.text_area :content, class: "form-control"
+    %br
+    .list-group-item
+      %strong Submissions:
       %br
-    = f.submit "Submit Comment", class: "btn btn-primary"
+      - @submissions.each do |submission|
+        = link_to submission.name, assignment_submission_path(@assignment, submission)
+        |
+        = submission.user.last_name + ', ' + submission.user.first_name
+        %br
+      %br
+      = link_to "Create HW Submission", new_assignment_submission_path(@assignment)
+    %br
+    %br
+    .list-group-item
+      Comments:
+      %br
+      %ul
+        - @comments.each do |comment|
+          %li
+            = comment.content
+            |
+            = comment.user.email
+            |
+            = link_to "Delete comment", destroy_comment_assignment_path(comment), method: :delete
+        %br
+      %br
+      %br
+      Add Comments:
+      = form_for @comment, url: create_comment_assignment_path(@assignment) do |f|
+        .form-group
+          = f.label :content
+          = f.text_area :content, class: "form-control"
+          %br
+        = f.submit "Submit Comment", class: "btn btn-primary"
 
 
-  
+    

@@ -1,16 +1,12 @@
+= render 'locations_jumbotron_index'
+
 .text-center
   = link_to "Add a New Location", new_location_path
-  %br
-  = link_to "Return to root", root_path
-  %br
-  Please select a location:
-  %br
-  %br
-
-  - @locations.each do |location|
-    .col-md-3
+%br
+%br
+- @locations.each do |location|
+  .col-md-3.text-center
+    .list-group-item
       = link_to location.city, location_path(location)
+    %br
 
-  %br
-  %br
-  %br

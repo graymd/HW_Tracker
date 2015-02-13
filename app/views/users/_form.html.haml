@@ -1,17 +1,22 @@
-.list-group-item
-  = form_for @user do |f|
-    = f.label :first_name
-    = f.text_field :first_name, class: "form-control"
-    = f.label :last_name
-    = f.text_field :last_name, class: "form-control"
-    = f.label :github_account
-    = f.text_field :github_account, class: "form-control"
-    %br
-    .list-group-item
-      = f.label :admin
-      = f.radio_button(:admin, 1)
-      = f.label(:admin, "yes")
-      = f.radio_button(:admin, 0)
-      = f.label(:admin, "no")
-    %br
-    = f.submit "Submit", class: "btn btn-primary"
+.col-md-6.col-md-offset-3
+  .list-group-item
+    = form_for @user do |f|
+      .form-group
+        = f.label :first_name
+        = f.text_field :first_name, class: "form-control"
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, class: "form-control"
+      .form-group
+        = f.label :github_account
+        = f.text_field :github_account, class: "form-control"
+      %br
+      .list-group-item
+        = f.label :admin
+        = f.radio_button(:admin, 1)
+        = f.label(:admin, "yes")
+        = f.radio_button(:admin, 0)
+        = f.label(:admin, "no")
+      %br
+      .form-group
+        = f.submit "Submit", class: "btn btn-primary"

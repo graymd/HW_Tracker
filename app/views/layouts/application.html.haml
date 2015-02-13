@@ -1,26 +1,37 @@
 !!!
 %html
   %head
-    %title HwTrackerProject
+    %title TIY Managment System
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
-    .container
-      - if current_user
-        =link_to "Logout #{current_user.email}", destroy_user_session_path, method: :delete
-        |
-        = link_to "Edit #{current_user.email}", edit_user_registration_path(current_user)
-      -else
-        = link_to "Login", new_user_session_path
-        |
-        = link_to "Register account", new_user_registration_path
-      - if notice
-        .alert.alert-success{ role: "alert"}
-          = notice
-      - if alert
-        .alert.alert-danger{ role: "alert"}
-          = alert
-      %br
-      %br
-      = yield
+  %body.container
+  - if notice
+    .alert.alert-success{ role: "alert"}
+      = notice
+  - if alert
+    .alert.alert-danger{ role: "alert"}
+      = alert
+  .masthead
+    %h3.text-muted The Iron Yard Management System
+    %nav
+      %ul.nav.nav-justified
+        %li{class: active_link(root_path)}
+          = link_to "Home", root_path
+        %li{class: active_link('locations')}
+          = link_to "Locations", locations_path
+        %li{class: active_link('courses')}
+          = link_to "Courses", courses_path
+        %li{class: active_link('assignments')}
+          = link_to "Homework Assignments", assignments_path
+        %li{class: active_link('users')}
+          = link_to "Users", users_path
+        %li
+          %a{:href => "mailto: TIY@madeup.com?subject=Webpage Input", :target => "_blank"} Contact
+  / Jumbotron
+  .container
+    = yield
+  / Site footer
+  %footer.footer
+    %p © TIY.MDG_Productions 2014
+/ /container

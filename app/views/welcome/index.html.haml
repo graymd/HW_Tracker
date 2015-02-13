@@ -1,10 +1,26 @@
-Welcome to the Iron Yard Management Site.
-%br
-%br
-= link_to "Locations", locations_path
-%br
-= link_to "Courses", courses_path
-%br
-= link_to "Assignments", assignments_path
-%br
-= link_to "Users Index", users_path
+.jumbotron
+  %h1 Welcome to The Iron Yard Management System
+  %p.lead All locations, courses, HW assignments, and student submissions are handled through this Management System.  Please Login.
+  %p
+  - if current_user
+    = link_to "Edit User Account", edit_user_registration_path(current_user), class: "btn btn-primary"
+    =link_to "Logout #{current_user.first_name}", destroy_user_session_path, method: :delete, class: "btn btn-danger"
+  -else
+    = link_to "Login", new_user_session_path, class: "btn btn-primary"
+    = link_to "Create account", new_user_registration_path, class: "btn btn-primary"
+/ Example row of columns
+.row
+  .col-lg-4
+    %h2 Locations
+    %p
+      The Iron Yard is continually growing.  Checkout our locations.
+    = link_to "Locations", locations_path, class: "btn btn-primary"
+  .col-lg-4
+    %h2 Courses
+    %p 
+      The Iron Yard continues to offer new courses.  Checkout all the different courses we currently offer.
+    = link_to "Courses", courses_path, class: "btn btn-primary"
+  .col-lg-4
+    %h2 Assignments
+    %p Checkout your assignments
+    = link_to "Assignments", assignments_path, class: "btn btn-primary"
