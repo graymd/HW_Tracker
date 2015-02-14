@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
-
+  before_action :authenticate_user!
+  load_and_authorize_resource param_method: :submission_params
   def index
     @assignment = Assignment.find params[:assignment_id]
     @submissions = Submission.all

@@ -2,6 +2,7 @@
 %html
   %head
     %title TIY Managment System
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -26,12 +27,18 @@
           = link_to "Homework Assignments", assignments_path
         %li{class: active_link('users')}
           = link_to "Users", users_path
-        %li
-          %a{:href => "mailto: TIY@madeup.com?subject=Webpage Input", :target => "_blank"} Contact
+        %li{class: active_link('')}
+          - if current_user
+            =link_to "Logout #{current_user.first_name}", destroy_user_session_path, method: :delete
+          -else
+            = link_to "Login", new_user_session_path
   / Jumbotron
   .container
     = yield
   / Site footer
   %footer.footer
-    %p © TIY.MDG_Productions 2014
+    %p
+      © TIY.MDG_Productions 2014
+      %br
+      %a{:href => "mailto: TIY@madeup.com?subject=Webpage Input", :target => "_blank", class: "glyphicon glyphicon-envelope"} Contact
 / /container

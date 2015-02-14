@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit({ location_course_ids: [] }, :username, :email, :first_name, :last_name, :github_account, :password) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit({ location_course_ids: [] }, :username, :email, :first_name, :last_name, :github_account, :password, :current_password) }
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 end

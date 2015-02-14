@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 
 #cancan to set user action restrictions
-gem 'cancan' 
+gem 'cancancan', '~> 1.10' 
 
 #haml-rails for haml markup language
 gem 'haml-rails'

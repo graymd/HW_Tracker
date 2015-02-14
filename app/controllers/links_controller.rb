@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
-
+  before_action :authenticate_user!
+  load_and_authorize_resource param_method: :link_params
   def index
 
   end

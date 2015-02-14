@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
-  
+  load_and_authorize_resource param_method: :location_params
   def index
     @locations = Location.all
   end

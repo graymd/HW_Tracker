@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate_user!
+  load_and_authorize_resource param_method: :user_params
   def index
     @users = User.all
   end

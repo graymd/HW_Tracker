@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-
+  before_action :authenticate_user!
+  load_and_authorize_resource param_method: :course_params
   def index
     @courses = Course.all
   end
