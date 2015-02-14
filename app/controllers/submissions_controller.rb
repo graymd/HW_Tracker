@@ -65,7 +65,9 @@ class SubmissionsController < ApplicationController
     @submission = @assignment.submissions.find params[:id]
     @comment = @submission.comments.create comment_params
     @comment.user = current_user
-    @comment.save
+    if @comment.save
+      UserMailer.assignment_comment_email(current_user, @comment).deliver
+    end
     redirect_to assignment_submission_path(@assignment, @submission)
   end
 

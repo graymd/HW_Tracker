@@ -50,5 +50,11 @@
           %br
         = f.submit "Submit Comment", class: "btn btn-primary"
 
+    - Location.all.each do |location|
+      - location.location_courses.each do |location_course|
+        - location_course.location_course_users.each do |location_course_user|
+          - user = User.find(location_course_user) 
+          = user.first_name
+
 
     

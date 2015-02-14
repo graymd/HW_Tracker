@@ -26,6 +26,9 @@ gem 'haml-rails'
 #devise for user authentication
 gem 'devise'
 
+#better error messages
+gem 'better_errors'
+
 #conveniently manage multiple nested models in a single form
 gem "nested_form"
 
@@ -40,6 +43,9 @@ gem 'quiet_assets'
 
 #gem for using workflow states
 gem 'workflow'
+
+gem "letter_opener", :group => :development
+
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
