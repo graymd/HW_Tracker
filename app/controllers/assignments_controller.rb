@@ -1,7 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :authenticate_user!
-  authorize_resource param_method: :assignment_params
-  authorize_resource :comment, :through => :assignment
+
   def index
     @assignments = Assignment.all
   end
@@ -9,6 +8,7 @@ class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
     @assignment.user = current_user
+    authorize! :new, @assignment
   end
 
   def create
@@ -33,6 +33,7 @@ class AssignmentsController < ApplicationController
   def edit
     @assignment = Assignment.find params[:id]
     @assignment.user = current_user
+    authorize! :edit, @assignment
   end
 
   def update
@@ -51,6 +52,7 @@ class AssignmentsController < ApplicationController
   def destroy
     @assignment = Assignment.find params[:id]
     @assignment.destroy
+    authorize! :destroy, @assignment
     flash[:notice] = "Assignment successfully deleted."
     redirect_to assignments_path
   end
@@ -68,6 +70,7 @@ class AssignmentsController < ApplicationController
   def destroy_comment
     @comment = Comment.find params[:id]
     @comment.destroy
+    authorize! :destroy_comment, @comment
     redirect_to @comment.commentable
   end
 
