@@ -1,6 +1,7 @@
 class AssignmentsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource param_method: :assignment_params
+  authorize_resource param_method: :assignment_params
+  authorize_resource :comment, :through => :assignment
   def index
     @assignments = Assignment.all
   end

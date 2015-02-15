@@ -14,6 +14,7 @@ class Ability
         can :create, [Submission, Link]
         can :create_comment, [Submission, Assignment]
         can :read, [Assignment, Course, Link, Location]
+        can :read, Comment
         can :read, Submission do |submission|
             submission.try(:user) == user || submission.user.id == user.id
         end
@@ -24,6 +25,7 @@ class Ability
         can :destroy, Submission do |submission|
             submission.workflow_state != "completed" && submission.user.id == user.id
         end
+        cannot :destroy_comment, [Submission, Assignment]
         # https://github.com/CanCanCommunity/cancancan/wiki/Nested-Resources#polymorphic-associations
         # can :destroy_comment, Submission do |submission|
         #     submission.comment.user.id
