@@ -1,58 +1,55 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :first_name
+.text-center
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .field
+      = f.label :first_name
+      %br
+      = f.text_field :first_name, autofocus: true
+    .field
+      = f.label :last_name
+      %br
+      = f.text_field :last_name
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email
+    .field
+      = f.label :github_account
+      %br
+      = f.text_field :github_account
+    .field
+      = f.label :password
+      - if @validatable
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "off"
+    .field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "off"
+    /
+      <div class="field">
+      <haml_loud> f.label :password_confirmation </haml_loud><br />
+      <haml_loud> f.password_field :password_confirmation, autocomplete: "off" </haml_loud>
+      </div>
+    .actions
     %br
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
     %br
-    = f.text_field :last_name
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :github_account
+    %strong Select Applicable Locations/Courses:
     %br
-    = f.text_field :github_account
-  .field
-    = f.label :password
-    - if @validatable
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  /
-    <div class="field">
-    <haml_loud> f.label :password_confirmation </haml_loud><br />
-    <haml_loud> f.password_field :password_confirmation, autocomplete: "off" </haml_loud>
-    </div>
-  .actions
-  %br
-  %br
-  Select a Location:
-  %br
-  %ul
-    - Location.all.each do |location|
-      %li
-        = location.city
-        %br
-        Select desired courses offered:
-        %br
-        - location.location_courses.each do |location_course|
-          = check_box_tag 'user[location_course_ids][]', location_course.id
-          = location_course.course.name
-        %br
-        %br
-
-
-  %br
-  %br
+      - Location.all.each do |location|
+        .col-md-6
+          .list-group-item.text-center{class: "location-courses"}
+            = location.city
+            %br
+            Select desired courses offered:
+            %br
+            - location.location_courses.each do |location_course|
+              = check_box_tag 'user[location_course_ids][]', location_course.id
+              = location_course.course.name
+          %br
+    .row
+    %br
     = f.submit "Sign up"
-= render "devise/shared/links"
+  = render "devise/shared/links"

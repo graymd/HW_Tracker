@@ -17,10 +17,17 @@
         =f.label :open_date
         =f.date_field :open_date, class: "form-control"
       .form-group
-      = "Select courses offered at location:"
+        .list-group-item
+          = "Select courses offered at location:"
+          %br
+          - @courses.each do |course|
+            = check_box_tag 'location[course_ids][]', course.id, @location.courses.include?(course)
+            = course.name
       %br
-      - @courses.each do |course|
-        = check_box_tag 'location[course_ids][]', course.id, @location.courses.include?(course)
-        = course.name
-        %br
-      = f.submit "Submit", class: "btn btn-primary"
+      %br
+      .text-center
+        = f.submit "Submit", class: "btn btn-primary"
+        - if current_page?(:controller => 'locations', :action => 'new')
+          = link_to "Cancel", locations_path, class: "btn btn-danger"
+        -elsif current_page?(:controller => 'locations', :action => 'edit')
+          = link_to "Cancel", location_path(@location), class: "btn btn-danger"

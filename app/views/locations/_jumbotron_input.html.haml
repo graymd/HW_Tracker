@@ -1,0 +1,19 @@
+%h2
+  %strong Locations
+%p
+  - if current_page?(:controller => 'locations', :action => 'index')
+    = "Check Out All Our Locations...We Are Growing Fast!"
+    %br
+    %h4
+      - if current_user.admin?
+        = link_to "Add New Location", new_location_path
+  - elsif current_page?(:controller => 'locations', :action => 'new')
+    = "Add a New Location"
+  - elsif current_page?(:controller => 'locations', :action => 'edit')
+    = "Edit #{@location.city}"
+  - elsif current_page?(:controller => 'locations', :action => 'show')
+    = @location.city
+    %br
+    %h5
+      = link_to "Return to Locations", locations_path
+

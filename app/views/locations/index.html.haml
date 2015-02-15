@@ -1,9 +1,4 @@
-= render 'locations_jumbotron_index'
-
 .text-center
-  = link_to "Add a New Location", new_location_path
-%br
-%br
 - @locations.each do |location|
   .col-md-3.text-center
     .list-group-item

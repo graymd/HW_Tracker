@@ -1,31 +1,26 @@
-= render 'locations_jumbotron_show_edit'
-.text-center
-  = link_to "Return to Locations", locations_path
-  %br
-  .col-md-6.col-md-offset-3.text-center
-    .row
-      .list-group-item  
-        Address:
-        %br
-        = @location.street_address
-        %br
-        = @location.city + ', ' + @location.state
-    %br
-    .row
-      .list-group-item
-        Date location opened:
+.col-md-6.col-md-offset-3.text-center
+  .row
+    .list-group-item  
+      %strong Address:
+      %br
+      = @location.street_address
+      %br
+      = @location.city + ', ' + @location.state + ' ' + @location.zip_code.to_s
+      %br
+      %br
+        %strong Opened:
         = @location.open_date
-    %br
-    .row
-      .list-group-item
-        Courses offered:
-        %br
-        %ul.text-left
-          - @courses.each do |course|
-            %li
-              = link_to course.name, course_path(course)
+  %br
+  .row
+    .list-group-item
+      %strong Courses offered:
+      %br
+      %ul.text-left
+        - @courses.each do |course|
+          %li
+            = link_to course.name, course_path(course)
 
-    %br
-    = link_to "Edit location", edit_location_path(@location)
-    |
-    = link_to "Delete location", location_path(@location), method: :delete
+  %br
+  = link_to "Edit location", edit_location_path(@location)
+  |
+  = link_to "Delete location", location_path(@location), method: :delete
