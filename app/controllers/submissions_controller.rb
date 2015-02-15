@@ -1,18 +1,10 @@
 class SubmissionsController < ApplicationController
-  before_action :authenticate_user!
-  load_and_authorize_resource :assignment
-  load_and_authorize_resource :submission, :through  => :assignment
-  load_and_authorize_resource :comment, :through => :submission
-  # before_filter :authorize_parent
-
-  # def authorize_parent
-  #   authorize! :comment, (@submission || @assignment)
-  # end
-
+  before_action :authenticate_user
 
   def index
     @assignment = Assignment.find params[:assignment_id]
     @submissions = Submission.all
+    authorize! :read, Submission
   end
 
   def new
@@ -41,6 +33,7 @@ class SubmissionsController < ApplicationController
     @comment = Comment.new
     @comments = @submission.comments
     @links = @submission.links
+    authorize! :read, @submission
   end
 
   def edit
@@ -84,6 +77,7 @@ class SubmissionsController < ApplicationController
   def destroy_comment
     @comment = Comment.find params[:id]
     @comment.destroy
+    authorize! :destroy_comment, @comment
     redirect_to assignment_submission_path(@comment.commentable.assignment, @comment.commentable)
   end
 
