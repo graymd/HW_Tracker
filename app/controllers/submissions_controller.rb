@@ -2,7 +2,7 @@ class SubmissionsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource :assignment
   load_and_authorize_resource :submission, :through  => :assignment
-  load_and_authorize_resource :comment
+  load_and_authorize_resource :comment, :through => :submission
   # before_filter :authorize_parent
 
   # def authorize_parent

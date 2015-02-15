@@ -13,32 +13,55 @@
   - if alert
     .alert.alert-danger{ role: "alert"}
       = alert
-  .masthead
-    %h3.text-muted The Iron Yard Management System
-    %nav
-      %ul.nav.nav-justified
-        %li{class: active_link(root_path)}
-          = link_to "Home", root_path
-        %li{class: active_link('locations')}
-          = link_to "Locations", locations_path
-        %li{class: active_link('courses')}
-          = link_to "Courses", courses_path
-        %li{class: active_link('assignments')}
-          = link_to "Homework Assignments", assignments_path
-        %li{class: active_link('users')}
-          = link_to "Users", users_path
-        %li{class: active_link('')}
-          - if current_user
-            =link_to "Logout #{current_user.first_name}", destroy_user_session_path, method: :delete
-          -else
-            = link_to "Login", new_user_session_path
-  / Jumbotron
+/ Fixed navbar
+%nav.navbar.navbar-inverse.navbar-fixed-top
   .container
-    = yield
-  / Site footer
-  %footer.footer
-    %p
-      © TIY.MDG_Productions 2014
-      %br
-      %a{:href => "mailto: TIY@madeup.com?subject=Webpage Input", :target => "_blank", class: "glyphicon glyphicon-envelope"} Contact
-/ /container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Bootstrap theme
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "#"} Home
+        %li
+          %a{:href => "#about"} About
+        %li
+          %a{:href => "#contact"} Contact
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Dropdown
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => "#"} Action
+            %li
+              %a{:href => "#"} Another action
+            %li
+              %a{:href => "#"} Something else here
+            %li.divider
+            %li.dropdown-header Nav header
+            %li
+              %a{:href => "#"} Separated link
+            %li
+              %a{:href => "#"} One more separated link
+      / /.nav-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if current_user
+          = link_to "Logout #{current_user.first_name}", destroy_user_session_path, method: :delete
+        - else
+          = link_to "Login", new_user_session_path
+
+
+
+/ Main jumbotron for a primary marketing message or call to action
+.jumbotron
+  .container
+    .text-center
+      %h1 Welcome to The Iron Yard Management Tool!
+      %p All Iron Yard Locations, Courses, Homework Assignments, Homework Submissions, and User Information is mainted thru this Management Tool.  Please Login.
+.container
+  = yield
