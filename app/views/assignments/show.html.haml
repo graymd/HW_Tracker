@@ -1,60 +1,56 @@
-.jumbotron
-  %h1 Assignments
-  %p.lead 
-    =@assignment.name
-  = link_to "Return to assignments", assignments_path
-  %br
-  .col-md-6.col-md-offset-3.text-center
-    .row
-      .list-group-item
-        %strong Requirements:
-        %br
+.col-md-6.col-md-offset-3.text-center
+  .row
+    .list-group-item
+      %strong Assignment Requirements:
+      .text-left
         = @assignment.requirements
-        %br
-        = link_to "edit", edit_assignment_path(@assignment)
-        |
-        = link_to "delete", assignment_path(@assignment), method: :delete
-    %br
-    %br
-    .list-group-item
-      %strong Submissions:
       %br
-      - @submissions.each do |submission|
-        = link_to submission.name, assignment_submission_path(@assignment, submission)
-        |
-        = submission.user.last_name + ', ' + submission.user.first_name
-        %br
-      %br
-      = link_to "Create HW Submission", new_assignment_submission_path(@assignment)
+      = link_to "edit", edit_assignment_path(@assignment)
+      |
+      = link_to "delete", assignment_path(@assignment), method: :delete
+  %br
+  %br
+  .list-group-item
+    %strong Student Submissions:
     %br
     %br
-    .list-group-item
-      Comments:
+    - @submissions.each do |submission|
+      = link_to submission.name, assignment_submission_path(@assignment, submission)
+      |
+      = submission.user.last_name + ', ' + submission.user.first_name
       %br
+    %br
+    = link_to "Create HW Submission", new_assignment_submission_path(@assignment)
+  %br
+  %br
+  .list-group-item
+    %strong Comments:
+    %br
+    .text-left
       %ul
         - @comments.each do |comment|
           %li
             = comment.content
-            |
-            = comment.user.email
-            |
-            = link_to "Delete comment", destroy_comment_assignment_path(comment), method: :delete
+            %br
+            .text-center
+              %strong
+                = "Posted by: "
+              = " #{comment.user.last_name}, #{comment.user.first_name}"
+              = link_to "", destroy_comment_assignment_path(comment), method: :delete, class: "glyphicon glyphicon-trash"
+            %br
+    = form_for @comment, url: create_comment_assignment_path(@assignment) do |f|
+      .form-group
+        %strong
+          = f.label :content, "Add Comment:"
+        = f.text_area :content, class: "form-control"
         %br
-      %br
-      %br
-      Add Comments:
-      = form_for @comment, url: create_comment_assignment_path(@assignment) do |f|
-        .form-group
-          = f.label :content
-          = f.text_area :content, class: "form-control"
-          %br
-        = f.submit "Submit Comment", class: "btn btn-primary"
+      = f.submit "Submit Comment", class: "btn btn-primary"
 
-    - Location.all.each do |location|
-      - location.location_courses.each do |location_course|
-        - location_course.location_course_users.each do |location_course_user|
-          - user = User.find(location_course_user) 
-          = user.first_name
+  / - Location.all.each do |location|
+  /   - location.location_courses.each do |location_course|
+  /     - location_course.location_course_users.each do |location_course_user|
+  /       - user = User.find(location_course_user) 
+  /       = user.first_name
 
 
-    
+  

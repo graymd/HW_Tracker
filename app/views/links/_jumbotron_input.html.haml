@@ -1,0 +1,18 @@
+%h2
+  %strong Links
+%p
+  - if current_page?(:controller => 'links', :action => 'index')
+    = "Links"
+    %br
+    %h5
+      - if current_user.admin?
+        = link_to "Add New Link", new_assignment_submission_link_path
+  - elsif current_page?(:controller => 'links', :action => 'new')
+    = "Add a New Link"
+  - elsif current_page?(:controller => 'links', :action => 'edit')
+    = "Edit #{@link.url}"
+  - elsif current_page?(:controller => 'links', :action => 'show')
+    = @link.url
+    %br
+    %h5
+      = link_to "Return to Links", assignment_submission_links_path

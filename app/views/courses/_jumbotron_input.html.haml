@@ -1,0 +1,18 @@
+%h2
+  %strong Courses
+%p
+  - if current_page?(:controller => 'courses', :action => 'index')
+    = "Courses"
+    %br
+    %h5
+      - if current_user.admin?
+        = link_to "Add New Course", new_course_path
+  - elsif current_page?(:controller => 'courses', :action => 'new')
+    = "Add a New Course"
+  - elsif current_page?(:controller => 'courses', :action => 'edit')
+    = "Edit #{@course.name}"
+  - elsif current_page?(:controller => 'courses', :action => 'show')
+    = @course.name
+    %br
+    %h5
+      = link_to "Return to Courses", courses_path

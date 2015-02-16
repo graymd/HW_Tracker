@@ -9,3 +9,7 @@
         = f.text_area :input, class: "form-control"
       .form-group
         = f.submit "Submit", class: "btn btn-primary"
+        - if current_page?(:controller => 'submissions', :action => 'new')
+          = link_to "Cancel", assignment_submissions_path(@assignment), class: "btn btn-danger"
+        -elsif current_page?(:controller => 'submissions', :action => 'edit')
+          = link_to "Cancel", assignment_submission_path(@assignment, @submission), class: "btn btn-danger"

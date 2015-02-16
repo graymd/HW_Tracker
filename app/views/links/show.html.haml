@@ -1,8 +1,3 @@
-.jumbotron
-  %h1 Links
-  %p.lead
-    = @link.url
-
 .col-md-6.col-md-offset-3.text-center
   = link_to "Return to #{@submission.name} submission", assignment_submission_path(@assignment, @submission)
   %br

@@ -1,9 +1,2 @@
-.jumbotron
-  %h1 SUBMISSIONS
-  %p.lead
-    = @submission.name
 .text-center
-  %br
-  = link_to "Cancel", assignment_submission_path(@assignment, @submission)
-  %br
   = render 'form'

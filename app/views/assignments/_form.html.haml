@@ -8,4 +8,8 @@
         = f.label :requirements
         = f.text_area :requirements, class: "form-control"
       .form-group
-      = f.submit "Submit", class: "btn btn-primary"
+        = f.submit "Submit", class: "btn btn-primary"
+        - if current_page?(:controller => 'assignments', :action => 'new')
+          = link_to "Cancel", assignments_path, class: "btn btn-danger"
+        -elsif current_page?(:controller => 'assignments', :action => 'edit')
+          = link_to "Cancel", assignment_path(@assignment), class: "btn btn-danger"

@@ -1,0 +1,36 @@
+%h2
+  %strong Submissions
+%p
+  - if current_page?(:controller => 'submissions', :action => 'index')
+    = "Submissions"
+    %br
+    %h5
+      - if current_user.admin?
+        = link_to "Add New Submission", new_assignment_submission_path
+  - elsif current_page?(:controller => 'submissions', :action => 'new')
+    = "Add a New Submission"
+  - elsif current_page?(:controller => 'submissions', :action => 'edit')
+    = "Edit #{@submission.name}"
+  - elsif current_page?(:controller => 'submissions', :action => 'show')
+    = @assignment.name
+    %br
+    %h5
+      = link_to "Return to #{@assignment.name}", assignment_path(@assignment)
+    %br
+    %strong Current State:
+    %br
+    =workflow_state_helper(@submission)
+    %br
+    %br
+    -if current_user.admin
+      - if @submission.workflow_state != "completed"
+        %strong Change State:
+      %br
+      - if @submission.workflow_state == "new"
+        = link_to "Review", review_submission_assignment_submission_path(@assignment, @submission), method: :patch
+      -elsif @submission.workflow_state == "reviewing"
+        = link_to "Complete", complete_submission_assignment_submission_path(@assignment, @submission), method: :patch
+        |
+        = link_to "Incomplete", incomplete_submission_assignment_submission_path(@assignment, @submission), method: :patch
+      -elsif @submission.workflow_state == "incompleted"
+        = link_to "Review", review_submission_assignment_submission_path(@assignment, @submission), method: :patch

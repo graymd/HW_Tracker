@@ -16,3 +16,7 @@
             = location.city
       .row.text-center
         = f.submit "Submit", class: "btn btn-primary"
+        - if current_page?(:controller => 'courses', :action => 'new')
+          = link_to "Cancel", courses_path, class: "btn btn-danger"
+        -elsif current_page?(:controller => 'courses', :action => 'edit')
+          = link_to "Cancel", course_path(@course), class: "btn btn-danger"

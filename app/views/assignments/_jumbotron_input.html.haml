@@ -1,0 +1,18 @@
+%h2
+  %strong Assignments
+%p
+  - if current_page?(:controller => 'assignments', :action => 'index')
+    = "Assignments"
+    %br
+    %h5
+      - if current_user.admin?
+        = link_to "Add New Assignment", new_assignment_path
+  - elsif current_page?(:controller => 'assignments', :action => 'new')
+    = "Add a New Assignment"
+  - elsif current_page?(:controller => 'assignments', :action => 'edit')
+    = "Edit #{@assignment.name}"
+  - elsif current_page?(:controller => 'assignments', :action => 'show')
+    = @assignment.name
+    %br
+    %h5
+      = link_to "Return to Assignments", assignments_path

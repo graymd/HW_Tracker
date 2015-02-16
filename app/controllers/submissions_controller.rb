@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
 
   def index
     @assignment = Assignment.find params[:assignment_id]

@@ -1,11 +1,5 @@
-.jumbotron
-  %h1 USERS
-  %p.lead IRON YARD USERS
-.text-center
-  %br
-  %br
-  - @users.each do |user|
-    .col-md-3.text-center
-      .list-group-item
-        = link_to user.last_name + ", " + user.first_name, user_path(user)
-  %br
+- @users.each do |user|
+  .col-md-3.text-center
+    .list-group-item
+      = link_to user.last_name + ", " + user.first_name, user_path(user)
+%br

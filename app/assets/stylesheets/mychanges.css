@@ -9,3 +9,13 @@ li{
 li.inline-footer{
   display: inline-block;
 }
+
+.jumbotron{
+  color: navy;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+li.ordered-list{
+  list-style-type: circle;
+}

@@ -6,3 +6,4 @@
         = f.text_area :url, class: "form-control"
       .form-group
         = f.submit "Submit", class: "btn btn-primary"
+        = link_to "Cancel", assignment_submission_path(@assignment, @submission), class: "btn btn-danger"

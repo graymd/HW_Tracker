@@ -1,16 +1,9 @@
-.jumbotron
-  %h1 Assignments
-  %p.lead All Assignments:
-.text-center
-  = link_to "Add a new assignment", new_assignment_path
-  %br
-  %br
-  - @assignments.each do |assignment|
-    .col-md-3
-      .list-group-item
-        = link_to assignment.name, assignment_path(assignment)
-        %br
-        = link_to "edit", edit_assignment_path(assignment)
-        |
-        = link_to "delete", assignment_path(assignment), method: :delete
+- @assignments.each do |assignment|
+  .col-md-3.text-center
+    .list-group-item
+      = link_to assignment.name, assignment_path(assignment)
       %br
+      = link_to "edit", edit_assignment_path(assignment)
+      |
+      = link_to "delete", assignment_path(assignment), method: :delete
+    %br
