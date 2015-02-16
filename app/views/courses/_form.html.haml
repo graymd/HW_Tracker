@@ -14,6 +14,7 @@
           %label
             = check_box_tag 'course[location_ids][]', location.id, @course.locations.include?(location)
             = location.city
+      %br
       .row.text-center
         = f.submit "Submit", class: "btn btn-primary"
         - if current_page?(:controller => 'courses', :action => 'new')
