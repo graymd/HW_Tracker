@@ -2,7 +2,7 @@
   %strong Users
 %p
   - if current_page?(:controller => 'users', :action => 'index')
-    = "Users"
+    = "Registered Users"
   - elsif current_page?(:controller => 'users', :action => 'new')
     = "Add a New User"
   - elsif current_page?(:controller => 'users', :action => 'edit')

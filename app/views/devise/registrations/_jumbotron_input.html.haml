@@ -1,5 +1,10 @@
-%h1 
-  - if current_page?(new_user_registration_path)
+- if current_page?(new_user_registration_path)
+  %h2
     = "New User Registration"
-  - else
+  %h5
+    = link_to "Cancel", root_path
+- else
+  %h2
     = "Edit User Information"
+  %h5
+    = link_to "Cancel", root_path
